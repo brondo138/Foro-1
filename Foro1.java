@@ -1,4 +1,5 @@
 package com.mycompany.foro1;
+
 import java.util.Scanner;
 import java.util.Map;
 import java.util.HashMap;
@@ -17,12 +18,16 @@ public class Foro1 {
 
         do {
             try {
-                System.out.println("Bienvenido, ¿qué desea hacer?\n1. Buscar Alumno\n2. Ingresar Alumno\n3. Eliminar Alumno\n4. Mostrar todos los Alumnos\n5. Salir del programa");
+                System.out.println("Bienvenido, ¿qué desea hacer?"
+                        + "\n1. Buscar Alumno\n2. Ingresar Alumno"
+                        + "\n3. Eliminar Alumno\n4. Mostrar todos los Alumnos"
+                        + "\n5. Salir del programa");
+                
                 System.out.print("Ingrese el número de la opción deseada: ");
                 opcion = rd.nextInt();
                 //salir = true;
             } catch (Exception e) {
-                System.out.println("Ingrese un número válido.");
+                System.out.println("\nIngrese un número válido.\n");
                 rd.nextLine(); // Limpiar el búfer
                 
             }
@@ -37,7 +42,7 @@ public class Foro1 {
                 
                 case 2:
                     rd.nextLine();
-                    System.out.print("Ingresa el nombre completo del alumno: ");
+                    System.out.print("\nIngresa el nombre completo del alumno: ");
                     nombre = rd.nextLine();
                     System.out.print("Ingresa el carnet que se desea asignar: ");
                     carnet = rd.nextLine().toUpperCase();
@@ -70,29 +75,29 @@ public class Foro1 {
     public static void buscar(String carnet){
         String alumno = alumnos.get(carnet);
         if (alumno != null) {
-            System.out.println(carnet + " es el alumno " + alumno);
+            System.out.println("\n"+carnet + " es el alumno " + alumno+"\n");
         } else {
-            System.out.println("Alumno no encontrado, no se puede mostrar");
+            System.out.println("\nAlumno no encontrado, no se puede mostrar\n");
         }
     }
     
     public static void agregar(String carnet, String nombre){
         alumnos.put(carnet, nombre);
-        System.out.println("Alumno ingresado exitosamente");
+        System.out.println("Alumno ingresado exitosamente\n");
     }
     
     public static void eliminar(String carnet){
         String alumno = alumnos.remove(carnet);
     if (alumno != null) {
-        System.out.println("Alumno eliminado correctamente");
+        System.out.println("Alumno eliminado correctamente\n");
     } else {
-        System.out.println("Alumno no encontrado, no se puede eliminar");
+        System.out.println("Alumno no encontrado, no se puede eliminar\n");
     }
     }
     
     public static void mostrar(){
         if(alumnos.size() == 0){
-            System.out.println("No se encuentra ningun alumno registrado");
+            System.out.println("\nNo se encuentran alumnos registrados\n");
         }else {
             
             int maxLongitudCarnet = 0;
@@ -106,7 +111,7 @@ public class Foro1 {
             int anchoNombre = Math.max(maxLongitudNombre, "Nombre".length());
             int anchoCuadro = anchoCarnet + anchoNombre + 5;
             
-            System.out.println("Alumnos ingresados:");
+            System.out.println("\nAlumnos ingresados:");
             System.out.println("┌" + "─".repeat(anchoCuadro) + "┐");
             
             for (Map.Entry<String, String> entry : alumnos.entrySet()) {
@@ -114,7 +119,7 @@ public class Foro1 {
                 String nombre = entry.getValue();
                 System.out.printf("│ %-" + anchoCarnet + "s │ %-" + anchoNombre + "s │%n", carnet, nombre);
             }
-            System.out.println("└" + "─".repeat(anchoCuadro) + "┘");
+            System.out.println("└" + "─".repeat(anchoCuadro) + "┘\n");
         }
     }
 }
